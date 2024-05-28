@@ -1,0 +1,184 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #EEEEEE;
+    height: 100vh;
+    position: relative;
+    font-family: "Karla", sans-serif;
+    font-style: normal;
+    overflow: hidden;
+}
+
+.giticon {
+    height: 52.5px;
+    width: 52.5px;
+}
+
+.menuicon {
+    height: 52.5px;
+    width: 52.5px;
+}
+
+nav {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 25px 60px;
+}
+
+.history {
+    width: 400px;
+    height: 100vh;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: -400px;
+    border-radius: 10px;
+    transition: left .5s ease;
+}
+
+.history.showmenu {
+    left: 0;
+}
+
+.closeicon{
+    position: absolute;
+    right: 0;
+    height :35px;
+    width: 35px;
+    padding: 30px;
+}
+
+.inputfield{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cont1{
+    width: 25%;
+    height: 80%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+label{
+    width: 100%;
+    height: 100%;
+    cursor : pointer;
+}
+
+.text{
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%);
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor : pointer;
+}
+
+.text > img{
+    height: 150px;
+    width: 150px;
+}
+.text >p{
+    margin-top: 40px ;
+}
+
+.showdtl {
+    width: 400px;
+    max-width: 400px;
+    height: 100vh;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    right: -400px;
+    border-radius: 10px;
+    transition: right .5s ease;
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+
+.showdtl.showmenu {
+    right: 0;
+}
+
+table{
+    width: 90%;
+    max-width: 90%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin: 5%;
+    
+}
+th,td{
+    border: solid .1px rgba(0, 0, 0, 0.05);
+    width: 50%;
+    max-width: 50%;
+    padding: 10px;
+    word-wrap: break-word;
+}
+.removeallbtn,.uploadbtn{
+    width: 90%;
+    margin: 5px 5%;
+    height :45px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    
+}
+
+.sticky{
+    position: sticky;
+    z-index: 1;
+    bottom: 1px;
+    background: white;
+}
+
+.loadingpage{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    z-index: 2;
+    top: -100%;
+    background-color: rgba(255, 255, 255, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: top 1s ease;
+}
+.loadingpage.showloading{
+    top:0px;
+}
+.container_temp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.container_1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transform: translateY(250px);
+    transition: all 1.1s ease;
+}
+.container_1.active{
+    transform: translateY(0px);
+}

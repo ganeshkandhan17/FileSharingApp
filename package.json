@@ -1,0 +1,32 @@
+{
+  "name": "filesharingapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ganeshkandhan17/FileSharingApp.git"
+  },
+  "author": "Ganesh Kandhan V M",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ganeshkandhan17/FileSharingApp/issues"
+  },
+  "homepage": "https://github.com/ganeshkandhan17/FileSharingApp#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "date-fns": "^3.6.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "node-cron": "^3.0.3",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.1"
+  }
+}

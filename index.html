@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FShare</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Karla:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./public/style/style.css">
+    <link rel="icon" type="images/x-icon" href="public/img/logo.jpeg">
+</head>
+
+<body>
+    <nav>
+        <div>
+            <a target="_self" href="https://github.com/ganeshkandhan17/FileSharingApp" target="_blank"><img
+                    class="giticon" src="/public/img/github.png"></a>
+        </div>
+        <div>
+            <a target="_self" herf="/"><img class="menuicon" src="/public/img/menu.png"></a>
+        </div>
+    </nav>
+    <div class="history">
+        <img class="closeicon" src="./public/img/close.png">
+    </div>
+    <div class="inputfield">
+        <div class="cont1">
+            <label class="inputfile"  for="file">
+                <input  name="file" id="file" type="file" hidden multiple></input>
+            </label>
+        </div>
+    </div>
+    <div class="text">
+        <img src="./public/img/fileuploadicon.png">
+        <p >Drop Your Files Here</p>
+    </div>
+    <div class="showdtl">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        File Name
+                    </th>
+                    <th>
+                        Size
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="tbody">
+                
+            </tbody>
+        </table>
+        <div class="sticky">
+            <button onclick="uploadall()" class="uploadbtn"><b>Upload</b></button>
+            <button onclick="removeall()" class="removeallbtn"><b>Remove All</b></button>
+        </div>
+        
+    </div>
+    <div class="loadingpage">
+        <div class="container_1">
+                <img class="loadingicon"src="./public/img/loading.gif">
+            <div class="container_2"><p>Uploading <span class="percent">90%</span></p></div>
+        </div>    
+    </div>
+    <script src="./public/script/script.js"></script>
+</body>
+
+</html>
