@@ -18,9 +18,11 @@
   },
   "homepage": "https://github.com/ganeshkandhan17/FileSharingApp#readme",
   "dependencies": {
+    "archiver": "^7.0.1",
     "body-parser": "^1.20.2",
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
     "express": "^4.19.2",
     "multer": "^1.4.5-lts.1",
     "node-cron": "^3.0.3",

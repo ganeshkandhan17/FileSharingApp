@@ -27,19 +27,22 @@
     <div class="history showmenu">
         <img class="closeicon" src="./public/img/close.png">
         <div class="container_3">
-            <button class="btn_1"><p>Download Page</p><img src="./public/img/download.gif"></button>
-            <h2>History</h2>
-            <div class="scroll">
-            <table class="table_2">
-                <thead>
-                    <tr>
-                        <th>File Name</th>
-                    </tr>
-                </thead>
-                <tbody class="tbody_2">
+            <button onclick="downloadpagenav()"class="btn_1">
+                <p><b>Download Page</b></p><img src="./public/img/download.gif">
+            </button>
 
-                </tbody>
-            </table>
+            <h2 class="text_1">History</h2>
+            <div class="scroll">
+                <table class="table_3">
+                    <thead>
+                        <tr>
+                            <th>File Name</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody_2">
+
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -48,10 +51,22 @@
             <label class="inputfile" for="file">
                 <input name="file" id="file" type="file" hidden multiple></input>
             </label>
+
+        </div>
+        <div class="cont2">
+            <h2 class="text_2">Files Uploaded</h2>
+            <h5>No of File Uploaded = <span class="filecount">0</span></h5>
+            <img height=10 width=10 src='' class="qr">
+            <p class="text_3">Link : <a class="downloadlink" href=""></a></p>
+            <p class="text_3">Download Code : <span class="downloadcode">
+            </span></p>
+            <button onclick="againupload()"class="btn_3">
+                <p>Upload More</p><img src="./public/img/upload.gif">
+            </button>
         </div>
     </div>
     <div class="text">
-        <img src="./public/img/fileuploadicon.png">
+        <img src="./public/img/fileupload.svg">
         <p>Drop Your Files Here</p>
     </div>
     <div class="showdtl">
@@ -71,8 +86,12 @@
             </tbody>
         </table>
         <div class="sticky">
-            <button onclick="uploadall()" class="uploadbtn"><b>Upload</b></button>
-            <button onclick="removeall()" class="removeallbtn"><b>Remove All</b></button>
+            <button onclick="uploadall()" class="btn_2">
+                <p>Upload</p><img src="./public/img/upload.gif">
+            </button>
+            <button onclick="removeall()" class="btn_2">
+                <p>Remove All</p><img height=26 width=26 src="./public/img/trash.gif">
+            </button>
         </div>
 
     </div>
@@ -81,6 +100,14 @@
             <img class="loadingicon" src="./public/img/loading.gif">
             <div class="container_2">
                 <p>Uploading <span class="percent">0%</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="pleasewaitpage">
+        <div class="container_7">
+            <img class="loadingicon" src="./public/img/loading.gif">
+            <div class="container_2">
+                <p>Please Wait</p>
             </div>
         </div>
     </div>
