@@ -68,7 +68,7 @@
                     </tbody>
                 </table>
             </div>
-            <button onclick="download2()" class="btn_3">
+            <button onclick="downloadWithProgress()" class="btn_3">
                 <p>Download Files</p><img src="/public/img/download.gif">
             </button>
         </div>
@@ -77,7 +77,7 @@
         <div class="container_1">
             <img class="loadingicon" src="/public/img/loading.gif">
             <div class="container_2">
-                <p>Please Wait</p>
+                <p class="status">Downloading <span class="percent"></span>%</p>
             </div>
         </div>
     </div>
@@ -85,7 +85,6 @@
     <script>
         let code
         window.onload=()=>{
-            console.log("Start")
             code=document.querySelector(".code").innerHTML
             let xhr=new XMLHttpRequest;
             xhr.onload=()=>{

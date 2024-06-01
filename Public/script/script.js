@@ -1,4 +1,4 @@
-const url="https://fac8-2401-4900-3609-644b-5495-33fe-3424-1c1e.ngrok-free.app"
+const url = "https://fa10-2401-4900-3609-644b-f0b7-32b6-ad93-6467.ngrok-free.app"
 let menuicon = document.querySelector(".menuicon");
 let history = document.querySelector(".history");
 let closeicon = document.querySelector(".closeicon");
@@ -27,25 +27,25 @@ let show = 0;
 let filecount = 0
 let ohis
 let filename = ""
-window.onload=refreshhistory()
-function refreshhistory(){
+window.onload = refreshhistory()
+function refreshhistory() {
     delethistory()
-try {
-    ohis = getCookie("history");
-    ohis = ohis.toString();
-    ohis = ohis.substring(0, ohis.length - 1)
-    let his = getCookie("history");
-    his = his.toString();
-    his = his.split(",")
-    his.forEach((data) => {
-        if(!data==" "){
-            addhistory(data)
-        }
-    });
-}
-catch (err) {
-    addhistory("No History Found")
-}
+    try {
+        ohis = getCookie("history");
+        ohis = ohis.toString();
+        ohis = ohis.substring(0, ohis.length - 1)
+        let his = getCookie("history");
+        his = his.toString();
+        his = his.split(",")
+        his.forEach((data) => {
+            if (!data == " ") {
+                addhistory(data)
+            }
+        });
+    }
+    catch (err) {
+        addhistory("No History Found")
+    }
 }
 file.addEventListener("change", (e) => {
     for (data of file.files) {
@@ -62,10 +62,10 @@ file.addEventListener("change", (e) => {
 function uploadall() {
     ani();
     hideuploadmenu()
-    setTimeout(()=>{ 
+    setTimeout(() => {
         shift()
         refreshhistory()
-    },1000)
+    }, 1000)
     let hr = new XMLHttpRequest()
     hr.open('post', '/upload', true)
     hr.upload.onprogress = (e) => {
@@ -76,13 +76,13 @@ function uploadall() {
 
     }
     hr.upload.onload = () => {
-        hr.onload=()=>{
-            let path=hr.response
+        hr.onload = () => {
+            let path = hr.response
             postuploadpage(path)
         }
     }
     hr.send(formData)
-    hr.onerror=(err)=>{
+    hr.onerror = (err) => {
         console.log(err)
     }
     if (!ohis) {
@@ -116,7 +116,7 @@ function removeall() {
     while (tbody.firstChild) {
         tbody.removeChild(tbody.firstChild)
     }
-    filename="";
+    filename = "";
     formData = new FormData()
     show = 0
 }
@@ -154,102 +154,102 @@ function getCookie() {
     let name = "history" + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(';');
-    for(let i = 0; i <ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
     }
 }
 
-function delethistory(){
-    let temp=document.querySelector(".tbody_2");
-    while(temp.firstChild){
+function delethistory() {
+    let temp = document.querySelector(".tbody_2");
+    while (temp.firstChild) {
         temp.removeChild(temp.firstChild)
     }
 }
 
-function getqr(path){
+function getqr(path) {
     fetch(`https://image-charts.com/chart?chs=150x150&cht=qr&chl=${url}/${path}/file`)
-    .then((data)=>{
-    let img=document.createElement("img");
-    img.className="qr"
-    let url=data.url;
-    document.querySelector(".qr").src=url
-})
+        .then((data) => {
+            let img = document.createElement("img");
+            img.className = "qr"
+            let url = data.url;
+            document.querySelector(".qr").src = url
+        })
 }
 
-function shift(){
-    let cont1=document.querySelector(".cont1")
-    let cont2=document.querySelector(".cont2")
-    let txt=document.querySelector(".text")
+function shift() {
+    let cont1 = document.querySelector(".cont1")
+    let cont2 = document.querySelector(".cont2")
+    let txt = document.querySelector(".text")
     cont1.classList.toggle('active')
     cont2.classList.toggle('active')
     txt.classList.toggle('active')
 }
-function postuploadpage(path){
+function postuploadpage(path) {
     getqr(path);
-    document.querySelector(".filecount").innerHTML=filecount;
-    document.querySelector(".downloadlink").innerHTML=`${url}/${path}/file`
-    document.querySelector(".downloadlink").href=`/${path}/file`
-    document.querySelector(".downloadcode").innerHTML=path
-    setTimeout(ani,1000)
+    document.querySelector(".filecount").innerHTML = filecount;
+    document.querySelector(".downloadlink").innerHTML = `${url}/${path}/file`
+    document.querySelector(".downloadlink").href = `/${path}/file`
+    document.querySelector(".downloadcode").innerHTML = path
+    setTimeout(ani, 1000)
 }
 
-function downloadpagenav(){
-    window.location.href="getfile"
+function downloadpagenav() {
+    window.location.href = "getfile"
 }
 
-function ani1(){
+function ani1() {
     document.querySelector(".pleasewaitpage").classList.toggle("showloading")
     document.querySelector(".container_7").classList.toggle("active")
 }
 
-function againupload(){
+function againupload() {
     ani1()
-    setTimeout(()=>{
+    setTimeout(() => {
         showuploadmenu()
         shift()
-    },1000)
-    
-    setTimeout(ani1,2000)
-   
+    }, 1000)
+
+    setTimeout(ani1, 2000)
+
 }
 
 
-    const dropContainer = document.querySelector('.cont1');
-    const fileInput = document.getElementById('file');
+const dropContainer = document.querySelector('.cont1');
+const fileInput = document.getElementById('file');
 
-    dropContainer.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        dropContainer.classList.toggle("drag");
-    });
+dropContainer.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dropContainer.classList.toggle("drag");
+});
 
-    dropContainer.addEventListener('dragleave', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        dropContainer.classList.toggle("drag");
-    });
+dropContainer.addEventListener('dragleave', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dropContainer.classList.toggle("drag");
+});
 
-    dropContainer.addEventListener('drop', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+dropContainer.addEventListener('drop', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-        const files = e.dataTransfer.files;
-        const dataTransfer = new DataTransfer();
+    const files = e.dataTransfer.files;
+    const dataTransfer = new DataTransfer();
 
-        for (let i = 0; i < files.length; i++) {
-            console.log(files[i].name);
-            dataTransfer.items.add(files[i]);
-        }
+    for (let i = 0; i < files.length; i++) {
+        console.log(files[i].name);
+        dataTransfer.items.add(files[i]);
+    }
 
-        fileInput.files = dataTransfer.files;
-        const event = new Event('change', { bubbles: true });
-        fileInput.dispatchEvent(event);
-    })
+    fileInput.files = dataTransfer.files;
+    const event = new Event('change', { bubbles: true });
+    fileInput.dispatchEvent(event);
+})
 
 

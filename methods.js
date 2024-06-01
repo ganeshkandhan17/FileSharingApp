@@ -19,16 +19,16 @@ function get4id() {
 
 }
 
-function fileexist(code){
-    let p=new Promise((resolve,reject)=>{
-        fs.readdir(path.join(__dirname,'Files'),(err,dir)=>{
-            if(dir.includes(code)){
-              resolve(true)
+function fileexist(code) {
+    let p = new Promise((resolve, reject) => {
+        fs.readdir(path.join(__dirname, 'Files'), (err, dir) => {
+            if (dir.includes(code)) {
+                resolve(true)
             }
-            else{
-              resolve(false)
+            else {
+                resolve(false)
             }
-          })
+        })
     })
     return p
 }

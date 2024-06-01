@@ -90,20 +90,19 @@ function codecheck() {
         let xhr = new XMLHttpRequest()
         xhr.open('post', '/checkcode');
         xhr.responseType = "text";
-        localStorage.setItem('code',input.value)
+        localStorage.setItem('code', input.value)
         xhr.setRequestHeader('Content-Type', 'application/json');
-        let json={
-            code : input.value
+        let json = {
+            code: input.value
         }
         console.log(JSON.stringify(json))
         xhr.send(JSON.stringify(json));
-        xhr.onload=()=>{
-            let res=xhr.response
-            console.log(res);
-            if(res=="true"){
-                window.location.href=`/${input.value}/file`
+        xhr.onload = () => {
+            let res = xhr.response
+            if (res == "true") {
+                window.location.href = `/${input.value}/file`
             }
-            else if(res=="false"){
+            else if (res == "false") {
                 showalert("Enter Valid Code")
             }
         }
@@ -112,28 +111,49 @@ function codecheck() {
 
 }
 
-function download2() {
-    let code = document.querySelector(".code").innerHTML;
-    console.log('Code:', code);
-    let url = `/${code}/download`;
+function downloadWithProgress() {
+    ani();
+      let code = document.querySelector(".code").innerHTML;
+      let url = `/${code}/download`;
 
-    fetch(url)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok ' + response.statusText);
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', url, true);
+      xhr.responseType = 'blob';
+
+      xhr.onprogress = function(event) {
+        console.log(event)
+        if (event.lengthComputable) {
+          const percentComplete = (event.loaded / event.total) * 100;
+          document.getElementById('progress').innerText = `Downloaded: ${percentComplete.toFixed(2)}%`;
         }
-        return response.blob();
-      })
-      .then(blob => {
-        console.log('Blob:', blob);
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.style.display = 'none';
-        a.href = url;
-        a.download = `${code}.zip`;
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-      })
-      .catch(err => console.error('Error downloading the file:', err));
-  }
+      };
+
+      xhr.onload = function() {
+        ani()
+        if (xhr.status === 200) {
+          const blob = xhr.response;
+          const downloadUrl = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.style.display = 'none';
+          a.href = downloadUrl;
+          a.download = `${code}.zip`;
+          document.body.appendChild(a);
+          a.click();
+          window.URL.revokeObjectURL(downloadUrl);
+          document.body.removeChild(a);
+        } else {
+          console.error('Download failed:', xhr.statusText);
+        }
+      };
+
+      xhr.onerror = function() {
+        console.error('Network error');
+      };
+
+      xhr.send();
+    }
+
+function ani(){
+    document.querySelector(".loadingpage").classList.toggle("showloading")
+    document.querySelector(".container_1").classList.toggle("active")
+}

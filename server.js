@@ -15,10 +15,19 @@ app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 app.engine('html', ejs.renderFile);
 let log = (name, dir) => {
-  console.log("File Uploaded")
   fs.appendFile(
     path.join(__dirname, "log.txt"),
     `${name} \t \t \t \t \t \t./Files/${dir}\t ${getdate()} \t ${gettime()} \t ${uid()} \n`,
+    (err) => {
+      if (err) throw err;
+    }
+  );
+}
+
+let downloadlog = (dir) => {
+  fs.appendFile(
+    path.join(__dirname, "log.txt"),
+    `Download \t \t \t \t \t \t./Files/${dir}\t ${getdate()} \t ${gettime()} \t ${uid()} \n`,
     (err) => {
       if (err) throw err;
     }
@@ -79,7 +88,8 @@ app.get("/:code/file",(req,res)=>{
 app.post('/checkcode',(req,res)=>{
   let code=req.body.code;
   fileexist(code).then((data)=>{
-    if(data){
+
+    if(data){ 
       res.send("true")
     }
     else{
@@ -99,6 +109,9 @@ app.get('/:code/download', (req, res) => {
   let code=req.params.code
   const folderPath = path.join(__dirname, 'Files', code);
   const zipFileName = `${code}.zip`;
+
+  
+  downloadlog(code)
   res.setHeader('Content-Disposition', `attachment; filename=${zipFileName}`);
   res.setHeader('Content-Type', 'application/zip');
   const archive = archiver('zip', {
