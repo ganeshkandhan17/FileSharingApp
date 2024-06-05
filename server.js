@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const uuid = require("uuid");
+const streamBuffers = require('stream-buffers');
 const bodyparser = require("body-parser");
 const express = require("express");
 const ejs = require('ejs');
@@ -106,24 +107,33 @@ app.get("/:code/filedtl",(req,res)=>{
 })
 
 app.get('/:code/download', (req, res) => {
-  let code=req.params.code
+  let code = req.params.code;
+  downloadlog(code)
   const folderPath = path.join(__dirname, 'Files', code);
   const zipFileName = `${code}.zip`;
 
-  
-  downloadlog(code)
-  res.setHeader('Content-Disposition', `attachment; filename=${zipFileName}`);
-  res.setHeader('Content-Type', 'application/zip');
+  const output = new streamBuffers.WritableStreamBuffer();
   const archive = archiver('zip', {
     zlib: { level: 9 }
   });
+
   archive.on('error', (err) => {
     throw err;
   });
-  archive.pipe(res);
+
+  archive.pipe(output);
   archive.directory(folderPath, false);
   archive.finalize();
+
+  output.on('finish', () => {
+    const zipBuffer = output.getContents();
+    res.setHeader('Content-Disposition', `attachment; filename=${zipFileName}`);
+    res.setHeader('Content-Type', 'application/zip');
+    res.setHeader('Content-Length', zipBuffer.length);
+    res.send(zipBuffer);
+  });
 });
+
 process.on("uncaughtException", (err) => {
   console.log("Error Occurs in App: " + err);
 });

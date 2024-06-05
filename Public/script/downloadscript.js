@@ -112,46 +112,43 @@ function codecheck() {
 }
 
 function downloadWithProgress() {
-    ani();
-      let code = document.querySelector(".code").innerHTML;
-      let url = `/${code}/download`;
+    ani(); // Assuming ani() is a function that starts a loading animation
+    let code = document.querySelector(".code").innerHTML;
+    let url = `/${code}/download`;
 
-      const xhr = new XMLHttpRequest();
-      xhr.open('GET', url, true);
-      xhr.responseType = 'blob';
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'blob';
 
-      xhr.onprogress = function(event) {
-        console.log(event)
-        if (event.lengthComputable) {
-          const percentComplete = (event.loaded / event.total) * 100;
-          document.getElementById('progress').innerText = `Downloaded: ${percentComplete.toFixed(2)}%`;
-        }
-      };
+    xhr.onprogress = function(event) {
+            const percentComplete = (event.loaded / event.total) * 100;
+            document.querySelector(".percent").innerText = Math.ceil(percentComplete);
+       };
 
-      xhr.onload = function() {
-        ani()
+    xhr.onload = function() {
+        setTimeout(ani,1000)
         if (xhr.status === 200) {
-          const blob = xhr.response;
-          const downloadUrl = window.URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.style.display = 'none';
-          a.href = downloadUrl;
-          a.download = `${code}.zip`;
-          document.body.appendChild(a);
-          a.click();
-          window.URL.revokeObjectURL(downloadUrl);
-          document.body.removeChild(a);
+            const blob = xhr.response;
+            const downloadUrl = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = downloadUrl;
+            a.download = `${code}.zip`;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(downloadUrl);
+            document.body.removeChild(a);
         } else {
-          console.error('Download failed:', xhr.statusText);
+            console.error('Download failed:', xhr.statusText);
         }
-      };
+    };
 
-      xhr.onerror = function() {
+    xhr.onerror = function() {
         console.error('Network error');
-      };
+    };
 
-      xhr.send();
-    }
+    xhr.send();
+}
 
 function ani(){
     document.querySelector(".loadingpage").classList.toggle("showloading")

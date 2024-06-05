@@ -1,4 +1,4 @@
-const url = "https://fa10-2401-4900-3609-644b-f0b7-32b6-ad93-6467.ngrok-free.app"
+const url = "localhost:3000"
 let menuicon = document.querySelector(".menuicon");
 let history = document.querySelector(".history");
 let closeicon = document.querySelector(".closeicon");
@@ -179,7 +179,10 @@ function getqr(path) {
             img.className = "qr"
             let url = data.url;
             document.querySelector(".qr").src = url
+            setTimeout(ani, 1000)
         })
+
+        
 }
 
 function shift() {
@@ -196,7 +199,6 @@ function postuploadpage(path) {
     document.querySelector(".downloadlink").innerHTML = `${url}/${path}/file`
     document.querySelector(".downloadlink").href = `/${path}/file`
     document.querySelector(".downloadcode").innerHTML = path
-    setTimeout(ani, 1000)
 }
 
 function downloadpagenav() {
