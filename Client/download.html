@@ -33,7 +33,7 @@
     <div class="history showmenu">
         <img class="closeicon" src="/public/img/close.png">
         <div class="container_3">
-            <button  onclick="uploadpagenav()" class="btn_1">
+            <button onclick="uploadpagenav()" class="btn_1">
                 <p><b>Upload Page</b></p><img src="/public/img/upload.gif">
             </button>
 
@@ -84,31 +84,31 @@
     <script src="/public/script/downloadscript.js"></script>
     <script>
         let code
-        window.onload=()=>{
-            code=document.querySelector(".code").innerHTML
-            let xhr=new XMLHttpRequest;
-            xhr.onload=()=>{
-                let data=xhr.responseText
-                data=data.replaceAll("[","")
-                data=data.replaceAll("]","")
-                data=data.replaceAll('"',"")
-                data=data.split(",")
-                data.forEach((data)=>{
+        window.onload = () => {
+            code = document.querySelector(".code").innerHTML
+            let xhr = new XMLHttpRequest;
+            xhr.onload = () => {
+                let data = xhr.responseText
+                data = data.replaceAll("[", "")
+                data = data.replaceAll("]", "")
+                data = data.replaceAll('"', "")
+                data = data.split(",")
+                data.forEach((data) => {
                     adddata(data)
                 })
             }
 
-            xhr.open('get',`/${code}/filedtl`);
+            xhr.open('get', `/${code}/filedtl`);
             xhr.send()
-            
+
         }
         function adddata(name) {
-        let tbody = document.querySelector(".tbody_3");
-        let tr1 = document.createElement("tr");
-        let td1 = document.createElement("td");
-        td1.innerHTML = name;
-        tr1.appendChild(td1);
-        tbody.appendChild(tr1);
+            let tbody = document.querySelector(".tbody_3");
+            let tr1 = document.createElement("tr");
+            let td1 = document.createElement("td");
+            td1.innerHTML = name;
+            tr1.appendChild(td1);
+            tbody.appendChild(tr1);
         }
     </script>
 </body>

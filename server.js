@@ -5,9 +5,9 @@ const streamBuffers = require('stream-buffers');
 const bodyparser = require("body-parser");
 const express = require("express");
 const ejs = require('ejs');
-const {fileexist, get4id, uid, getdate, gettime } = require("./methods");
+const { fileexist, get4id, uid, getdate, gettime } = require("./methods");
 const multer = require("multer");
-const archiver=require("archiver")
+const archiver = require("archiver")
 const app = express();
 require("dotenv").config();
 const port = process.env.PORT || 3000;
@@ -36,7 +36,7 @@ let downloadlog = (dir) => {
 }
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, 'Client', "index.html"));
 });
 
 app.listen(port, (err) => {
@@ -67,41 +67,41 @@ app.post("/upload", upload.array("files"), (req, res) => {
   n = get4id()
 })
 
-app.get("/getfile",(req,res)=>{
-  res.sendFile(path.join(__dirname,'getfile.html'));
+app.get("/getfile", (req, res) => {
+  res.sendFile(path.join(__dirname, 'Client', 'getfile.html'));
 })
 
-app.get("/:code/file",(req,res)=>{
-  let code=req.params.code;
+app.get("/:code/file", (req, res) => {
+  let code = req.params.code;
   let dir
-  fileexist(code).then((data)=>{
-    if(data){
-      res.render(path.join(__dirname,'download.html'),{
-        code : code
+  fileexist(code).then((data) => {
+    if (data) {
+      res.render(path.join(__dirname, 'Client', 'download.html'), {
+        code: code
       })
     }
-    else{
+    else {
       res.send(`<script>window.location.href="/getfile";showalert("Invalid Url")</script>`)
     }
   })
 })
 
-app.post('/checkcode',(req,res)=>{
-  let code=req.body.code;
-  fileexist(code).then((data)=>{
+app.post('/checkcode', (req, res) => {
+  let code = req.body.code;
+  fileexist(code).then((data) => {
 
-    if(data){ 
+    if (data) {
       res.send("true")
     }
-    else{
+    else {
       res.send("false")
     }
   })
 })
 
-app.get("/:code/filedtl",(req,res)=>{
-  let code=req.params.code;
-  fs.readdir(path.join(__dirname,'Files',code),(err,data)=>{
+app.get("/:code/filedtl", (req, res) => {
+  let code = req.params.code;
+  fs.readdir(path.join(__dirname, 'Files', code), (err, data) => {
     res.send(data)
   })
 })

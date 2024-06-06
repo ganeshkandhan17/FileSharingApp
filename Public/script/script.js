@@ -182,7 +182,7 @@ function getqr(path) {
             setTimeout(ani, 1000)
         })
 
-        
+
 }
 
 function shift() {

@@ -120,13 +120,13 @@ function downloadWithProgress() {
     xhr.open('GET', url, true);
     xhr.responseType = 'blob';
 
-    xhr.onprogress = function(event) {
-            const percentComplete = (event.loaded / event.total) * 100;
-            document.querySelector(".percent").innerText = Math.ceil(percentComplete);
-       };
+    xhr.onprogress = function (event) {
+        const percentComplete = (event.loaded / event.total) * 100;
+        document.querySelector(".percent").innerText = Math.ceil(percentComplete);
+    };
 
-    xhr.onload = function() {
-        setTimeout(ani,1000)
+    xhr.onload = function () {
+        setTimeout(ani, 1000)
         if (xhr.status === 200) {
             const blob = xhr.response;
             const downloadUrl = window.URL.createObjectURL(blob);
@@ -143,14 +143,14 @@ function downloadWithProgress() {
         }
     };
 
-    xhr.onerror = function() {
+    xhr.onerror = function () {
         console.error('Network error');
     };
 
     xhr.send();
 }
 
-function ani(){
+function ani() {
     document.querySelector(".loadingpage").classList.toggle("showloading")
     document.querySelector(".container_1").classList.toggle("active")
 }
