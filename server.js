@@ -11,7 +11,7 @@ const archiver = require("archiver")
 const app = express();
 require("dotenv").config();
 const port = process.env.PORT || 3000;
-app.use("/public", express.static(path.join(__dirname, "public")))
+app.use(express.static(path.join(__dirname, "public")))
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 app.engine('html', ejs.renderFile);
