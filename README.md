@@ -13,6 +13,7 @@ Easily share and manage your files with this web app built using HTML, CSS, Java
   <li>Upload your file to generate a unique sharing code.</li>
   <li>Share the file using the generated code, QR code, or link.</li>
   <li>Access and download shared files with the provided code or link.</li>
+  <li>Server-side logging for monitoring and debugging file sharing activities.</li>
 </ul>
 <h3>🛠️ Tech Stack:</h3>
 <ul>
