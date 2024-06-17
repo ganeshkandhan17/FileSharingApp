@@ -15,6 +15,16 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 app.engine('html', ejs.renderFile);
+let accesslog = (ip) => {
+  fs.appendFile(
+    path.join(__dirname, "log.txt"),
+    `Accessed \t${ip}\t ${getdate()} \t ${gettime()} \t ${uid()} \n`,
+    (err) => {
+      if (err) throw err;
+    }
+  );
+}
+
 let log = (name, dir) => {
   fs.appendFile(
     path.join(__dirname, "log.txt"),
@@ -36,6 +46,9 @@ let downloadlog = (dir) => {
 }
 
 app.get("/", (req, res) => {
+  var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
+  console.log(`Accessed \t${ip}\t ${getdate()} \t ${gettime()} \t ${uid()} \n`)
+  accesslog(ip)
   res.sendFile(path.join(__dirname, 'Client', "index.html"));
 });
 
