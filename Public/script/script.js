@@ -1,4 +1,4 @@
-const url = "localhost:3000"
+const url = "http://3.111.37.211/filesharingapp"
 let menuicon = document.querySelector(".menuicon");
 let history = document.querySelector(".history");
 let closeicon = document.querySelector(".closeicon");
